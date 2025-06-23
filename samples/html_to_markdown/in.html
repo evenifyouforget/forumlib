@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Direct BBCode to HTML Conversion (Updated Spoiler)</title>
+    <title>BBCode Conversion with Combined Styles</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -125,18 +125,38 @@
 
     <div class="content-block">
         <h1>Welcome to My BBCode-ish Page!</h1>
-        <p>This page demonstrates a direct conversion of the BBCode syntax you provided. <br>
-           Even the non-standard tags are here!</p>
+        <p>This page demonstrates a direct conversion of the BBCode syntax you provided, <br>
+           including various combinations of text styles for robust testing.
+        </p>
     </div>
 
     <div class="content-block">
-        <h2>Basic Text Styling</h2>
+        <h2>Basic and Combined Text Styling</h2>
         <p>This is <b>bold text</b>, and this is <i>italic text</i>. <br>
            Here's some <u>underlined text</u>, and this text has a <s>strikethrough</s>. <br>
            For special formatting, we have <sup>superscript</sup> and <sub>subscript</sub> elements.
         </p>
         <p><font size="7">This text is explicitly set to a large size '7'.</font></p>
         <p>This paragraph uses a <font color="1979e6">specific color defined in the BBCode sample</font>.</p>
+
+        <h3>Combinations of Styles:</h3>
+        <p>
+            This is <b><i>bold and italic</i></b> text.<br>
+            This is <u><s>underlined and strikethrough</s></u> text.<br>
+            Here's some <b><u>bold and underlined</u></b> text.<br>
+            Let's try <i><s>italic and strikethrough</s></i>.
+        </p>
+        <p>
+            How about <b><u><i>bold, underlined, and italic</i></u></b>? <br>
+            This is <font color="1979e6"><b>bold and colored</b></font> text.<br>
+            And <font size="7"><i>large and italic</i></font> text. <br>
+            A complex one: <b><u><font color="1979e6"><i>Large, bold, underlined, italic, and colored!</i></font></u></b>
+        </p>
+        <p>
+            Scientific notation example: H<sub>2</sub>SO<sub>4</sub> <br>
+            Math example: E=mc<sup>2</sup> <br>
+            A combination: <b>Important <sup>superscript</sup> detail</b>.
+        </p>
     </div>
 
     <div class="content-block">
@@ -203,13 +223,15 @@
             <li>First list item.</li>
             <li>Second list item with a <br> line break in it.</li>
             <li>Third list item.</li>
+            <li>A combined list item: <b>Bold</b> and <i>italic</i> text.</li>
         </ul>
 
         <hr>
 
         <h3>A Spoiler Section:</h3>
         <spoiler button-text="Click to Reveal a Secret!">
-            <span>This is the hidden content of the spoiler. <br> It only shows up after the button is clicked in a real BBCode forum.</span>
+            <span>This is the hidden content of the spoiler. <br> It only shows up after the button is clicked in a real BBCode forum. <br>
+            It can also contain <b><i>combined</i></b> styles itself!</span>
         </spoiler>
     </div>
 

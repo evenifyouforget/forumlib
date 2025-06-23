@@ -33,23 +33,33 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
 
     # Replace <b> and <strong> with **bold**
     for tag in soup.find_all(['b', 'strong']):
-        tag.replace_with(f"**{tag.get_text()}**")
+        tag.insert_before(f"**")
+        tag.insert_after(f"**")
+        tag.unwrap()
 
     # Replace <i> and <em> with *italic*
     for tag in soup.find_all(['i', 'em']):
-        tag.replace_with(f"*{tag.get_text()}*")
+        tag.insert_before(f"*")
+        tag.insert_after(f"*")
+        tag.unwrap()
 
     # Replace <u> with __underline__
     for tag in soup.find_all('u'):
-        tag.replace_with(f"__{tag.get_text()}__")
+        tag.insert_before(f"__")
+        tag.insert_after(f"__")
+        tag.unwrap()
 
     # Replace <s> with ~~strikethrough~~
     for tag in soup.find_all('s'):
-        tag.replace_with(f"~~{tag.get_text()}~~")
+        tag.insert_before(f"~~")
+        tag.insert_after(f"~~")
+        tag.unwrap()
 
     # Replace <code> with `inline code`
     for tag in soup.find_all('code'):
-        tag.replace_with(f"`{tag.get_text()}`")
+        tag.insert_before(f"`")
+        tag.insert_after(f"`")
+        tag.unwrap()
 
     # Replace <br> and <br/> with newlines
     for tag in soup.find_all('br'):
@@ -59,12 +69,17 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
     for tag in soup.find_all('a'):
         href = tag.get('href', '')
         tag.replace_with(f"[{tag.get_text()}]({href})")
+    # Insert newlines before and after <p> tags
+    for tag in soup.find_all('p'):
+        tag.insert_before("\n")
+        tag.insert_after("\n")
+        tag.unwrap()
 
     # Convert the soup object to a string
     markdown = soup.get_text()
 
-    # Remove extra whitespace
-    markdown = re.sub(r'\s+', ' ', markdown).strip()
+    # Preserve original spacing within text blocks
+    markdown = re.sub(r'\n+', '\n', markdown).strip()
 
     return markdown
 
