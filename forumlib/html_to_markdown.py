@@ -55,25 +55,18 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
         tag.insert_after(f"~~")
         tag.unwrap()
 
-    # Replace <code> with `inline code`
+    # Replace <code> with ```code block```
     for tag in soup.find_all('code'):
-        tag.insert_before(f"`")
-        tag.insert_after(f"`")
+        tag.insert_before(f"BLOCKLINE```BLOCKLINE")
+        tag.insert_after(f"BLOCKLINE```BLOCKLINE")
         tag.unwrap()
 
-    # Replace <br> and <br/> with newlines
-    for tag in soup.find_all('br'):
-        tag.replace_with("\n")
-
-    # Replace <a> with [text](url)
-    for tag in soup.find_all('a'):
-        href = tag.get('href', '')
-        tag.replace_with(f"[{tag.get_text()}]({href})")
     # Insert newlines before and after <p> tags
-    for tag in soup.find_all('p'):
-        tag.insert_before("\n")
-        tag.insert_after("\n")
-        tag.unwrap()
+    for block_tag in soup.find_all(['p', 'div']):
+        for tag in soup.find_all(block_tag):
+            tag.insert_before("BLOCKLINE")
+            tag.insert_after("BLOCKLINE")
+            tag.unwrap()
 
     # Replace <ul> and <ol> with Markdown list syntax
     for tag in soup.find_all(['ul', 'ol']):
@@ -84,7 +77,7 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
         elif tag.name == 'ol':
             for index, li in enumerate(tag.find_all('li'), start=1):
                 list_items.append(f"{index}. {li.get_text()}")
-        tag.replace_with("\n".join(list_items))
+        tag.replace_with(f"BLOCKLINE" + "\n".join(list_items) + f"BLOCKLINE")
 
     # Replace heading tags <h1> to <h6> with Markdown syntax
     for i in range(1, 7):
@@ -107,8 +100,8 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
     # Convert the soup object to a string
     markdown = soup.get_text()
 
-    # Preserve original spacing within text blocks
-    markdown = re.sub(r'\n+', '\n', markdown).strip()
+    # Final cleanup: Replace BLOCKLINE sequences with single newlines, and merge with a single newline if present
+    markdown = re.sub(r'(?:BLOCKLINE)+\n?(?:BLOCKLINE)*|(?:BLOCKLINE)*\n?(?:BLOCKLINE)+', '\n', markdown).strip()
 
     return markdown
 
