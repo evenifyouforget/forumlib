@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 from typing import Union
 import argparse
+import re  # Add this import for regex
 
 def html_to_bbcode(input_data: Union[str, BeautifulSoup]) -> str:
     """
@@ -37,7 +38,10 @@ def html_to_bbcode(input_data: Union[str, BeautifulSoup]) -> str:
         soup = soup.body.extract()
 
     # Convert all tags by replacing angle brackets with square brackets
-    bbcode = str(soup).replace('<', '[').replace('>', ']').replace("\n", "").strip()
+    bbcode = soup.encode(formatter="minimal").decode("utf-8").replace('<', '[').replace('>', ']').strip()
+
+    # Replace <br> and <br/> tags with newlines using regex
+    bbcode = re.sub(r'\[br\s*/?\]', '\n', bbcode)
 
     return bbcode
 
