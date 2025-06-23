@@ -75,6 +75,35 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
         tag.insert_after("\n")
         tag.unwrap()
 
+    # Replace <ul> and <ol> with Markdown list syntax
+    for tag in soup.find_all(['ul', 'ol']):
+        list_items = []
+        if tag.name == 'ul':
+            for li in tag.find_all('li'):
+                list_items.append(f"* {li.get_text()}")
+        elif tag.name == 'ol':
+            for index, li in enumerate(tag.find_all('li'), start=1):
+                list_items.append(f"{index}. {li.get_text()}")
+        tag.replace_with("\n".join(list_items))
+
+    # Replace heading tags <h1> to <h6> with Markdown syntax
+    for i in range(1, 7):
+        for tag in soup.find_all(f'h{i}'):
+            tag.replace_with(f"{'#' * i} {tag.get_text(strip=True)}\n")
+
+    # Replace <table> with Markdown table syntax
+    for table in soup.find_all('table'):
+        rows = []
+        for row in table.find_all('tr'):
+            cells = [cell.get_text() for cell in row.find_all(['td', 'th'])]
+            rows.append(f"| {' | '.join(cells)} |")
+        # Add a separator row after the first row (assumed to be the header)
+        if rows:
+            num_columns = len(rows[0].split('|')) - 2  # Calculate the number of columns
+            header_separator = "| " + " | ".join(["---"] * num_columns) + " |"
+            rows.insert(1, header_separator)
+        table.replace_with("\n".join(rows))
+
     # Convert the soup object to a string
     markdown = soup.get_text()
 
