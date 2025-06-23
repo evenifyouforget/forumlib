@@ -60,10 +60,8 @@ Here's a block of code:
         
 ```
 And a quoted passage:
+> "The quick brown fox jumps over the lazy dog."- An ancient pangram.
 
-            "The quick brown fox jumps over the lazy dog." 
-            - An ancient pangram.
-        
 
 
 ## Structured Content

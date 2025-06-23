@@ -97,6 +97,11 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
             rows.insert(1, header_separator)
         table.replace_with("\n".join(rows))
 
+    # Replace <blockquote> with Markdown quote syntax
+    for tag in soup.find_all('blockquote'):
+        quoted_text = tag.get_text(strip=True)
+        tag.replace_with(f"> {quoted_text}\n")
+
     # Convert the soup object to a string
     markdown = soup.get_text()
 
