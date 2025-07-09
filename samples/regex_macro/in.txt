@@ -1,0 +1,16 @@
+foo bar baz
+#define foo bar
+foo bar baz
+#define bar baz
+foo bar baz
+
+FOO BAR BAZ
+#define BAR BAZ
+FOO BAR BAZ
+#define FOO BAR
+FOO BAR BAZ
+
+#define r(a+) $1$1
+#define g(a+) $1$1
+
+graa rgaa
