@@ -8,7 +8,7 @@ The inputs are HTML extended with a few customizations, and the outputs are a BB
 The distinct components of the text processor are:
 
 * A regex-based macro/replacement system
-* Inlining external CSS files
+* Linking in (inserting contents of) external CSS files
 * Inlining CSS styles onto elements
 * Removing elements that cannot be seen
 * Generating BBCode from the HTML
@@ -26,6 +26,26 @@ py .\forumlib\html_to_bbcode.py .\samples\html_to_bbcode\in.html .\samples\html_
 py .\forumlib\html_to_markdown.py .\samples\html_to_markdown\in.html .\samples\html_to_markdown\out.md
 ```
 
+## Support
+
+100% of basic features are working.
+
+I can't make guarantees if you're trying to be fancy:
+
+* Markdown only supports a very limited subset of HTML, and definitely no styling
+* The forum doesn't support many of the more fancy HTML tags, or blocks them, likewise with some styles
+* The library itself will choke on the most complicated CSS usage
+
+That said, the example is like 90% correct, in theory, not that the forum or Discord actually support all these elements and styles.
+
 ## AI code disclaimer
 
 I figured this was another fine time to test the capabilities of AI coding assistants, so I did quite a bit of vibe coding.
+In the end, the AI was a little disappointing, though it wasn't useless either.
+
+Mostly AI:
+
+* `css_layout_tools.py`
+* `html_to_bbcode.py`
+* `html_to_markdown.py`
+* All of the HTML examples
