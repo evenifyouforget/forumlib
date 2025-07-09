@@ -1,0 +1,435 @@
+/*
+ * Theme: "Ocean Breeze"
+ * This CSS file provides a distinct theme for the HTML sample,
+ * focusing on cool tones and a clean layout.
+ */
+
+/* General Body Styling */
+body {
+    font-family: 'Roboto', sans-serif; /* A slightly different, modern font */
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: #eaf6f6; /* Light teal background */
+    color: #2c3e50; /* Dark blue-grey for text */
+    display: flex;
+    justify-content: center;
+    min-height: 100vh; /* Ensure full height for background */
+}
+
+/* Container for Centering */
+.container {
+    max-width: 960px; /* Slightly wider container */
+    margin: 20px auto; /* Centered with top/bottom margin */
+    padding: 0 25px;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Header Styling */
+header {
+    background-color: #3498db; /* Vivid blue */
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    border-radius: 12px; /* More rounded corners */
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+header h1 {
+    font-size: 2.8em;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    background-color: #ffffff; /* White background for nav */
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+nav ul li {
+    display: inline-block; /* Use inline-block for better spacing control */
+    margin: 0 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #2980b9; /* Slightly darker blue for links */
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+nav ul li a:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+/* Section Styling */
+section {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #3498db; /* A left border accent */
+}
+section h2 {
+    color: #2980b9;
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ecf0f1; /* Subtle divider */
+    padding-bottom: 10px;
+}
+section h3 {
+    color: #34495e; /* Darker heading for sub-sections */
+    font-size: 1.5em;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+section p {
+    margin-bottom: 15px;
+}
+section ul {
+    list-style-type: disc; /* Default disc for unordered lists */
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+section ol {
+    list-style-type: decimal; /* Default decimal for ordered lists */
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+/* Text Formatting */
+strong {
+    color: #34495e; /* Stronger contrast for bold text */
+}
+em {
+    font-style: italic;
+    color: #555;
+}
+mark {
+    background-color: #f7dc6f; /* A soft yellow for highlight */
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+code {
+    background-color: #f0f4f7;
+    border: 1px solid #dbe4eb;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace; /* Monospace font for code */
+    color: #c0392b; /* Reddish tone for code */
+}
+blockquote {
+    border-left: 4px solid #3498db;
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #555;
+    background-color: #f8fcfc;
+    border-radius: 6px;
+    padding: 15px 20px;
+}
+blockquote cite {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+/* Buttons */
+.button {
+    background-color: #2ecc71; /* Green for action buttons */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px; /* More rounded */
+    text-decoration: none;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Ensure it respects padding and margin */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Image Styling */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: block; /* Ensures it takes up full width for centering */
+    margin: 15px 0; /* Add some vertical space */
+}
+
+/* Audio and Video */
+audio, video {
+    display: block;
+    margin: 15px 0;
+    width: 100%; /* Make them responsive */
+    max-width: 600px; /* Limit max width for better presentation */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: separate; /* Use separate to allow border-radius on cells */
+    border-spacing: 0; /* Remove space between cells */
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners apply to content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+table th, table td {
+    border: none; /* Remove individual cell borders */
+    padding: 12px 15px;
+    text-align: left;
+}
+table thead tr {
+    background-color: #3498db; /* Header row background */
+    color: white;
+}
+table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+table tbody tr:nth-child(even) {
+    background-color: #f8fcfc; /* Zebra striping */
+}
+table tbody tr:hover {
+    background-color: #eaf6f6; /* Highlight row on hover */
+}
+table tfoot tr {
+    background-color: #ecf0f1;
+    font-style: italic;
+    color: #555;
+}
+table tfoot td {
+    padding: 10px 15px;
+    font-size: 0.9em;
+}
+
+
+/* Form Styling */
+form {
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e7eb;
+}
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #34495e;
+}
+form input[type="text"],
+form input[type="email"],
+form textarea,
+form select {
+    width: calc(100% - 24px); /* Account for padding */
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #d0dbe2;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); /* Focus ring */
+    outline: none;
+}
+form textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px;
+}
+form select {
+    appearance: none; /* Remove default select arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%232c3e50%22%20d%3D%22M2%200L0%202h4zm0%205L0%203h4z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 8px 10px;
+}
+form fieldset {
+    border: 1px solid #e0e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fcfdfe;
+}
+form legend {
+    font-weight: bold;
+    color: #34495e;
+    padding: 0 10px;
+}
+form input[type="radio"],
+form input[type="checkbox"] {
+    margin-right: 8px;
+}
+form input[type="submit"] {
+    background-color: #2980b9; /* Form submit button color */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+form input[type="submit"]:hover {
+    background-color: #2471a3;
+    transform: translateY(-2px);
+}
+
+/* Interactive Elements */
+details {
+    background-color: #f8fcfc;
+    border: 1px solid #e0e7eb;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+details:hover {
+    background-color: #f2f7f7;
+}
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    color: #2980b9;
+    padding: 5px 0;
+    outline: none; /* Remove default outline */
+}
+summary:hover {
+    color: #34495e;
+}
+details p {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #e0e7eb;
+}
+
+progress, meter {
+    width: 100%;
+    height: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background-color: #ecf0f1; /* Background for empty part */
+    border: 1px solid #d0dbe2;
+}
+
+/* Customizing progress bar fill */
+progress::-webkit-progress-bar {
+    background-color: #ecf0f1;
+    border-radius: 12px;
+}
+progress::-webkit-progress-value {
+    background-color: #3498db; /* Blue fill */
+    border-radius: 12px;
+    transition: width 0.5s ease;
+}
+progress::-moz-progress-bar {
+    background-color: #3498db;
+    border-radius: 12px;
+    transition: width 0.5s ease;
+}
+
+/* Customizing meter fill */
+meter::-webkit-meter-bar {
+    background-color: #ecf0f1;
+    border-radius: 12px;
+}
+meter::-webkit-meter-optimum-value {
+    background-color: #2ecc71; /* Green for optimum */
+    border-radius: 12px;
+}
+meter::-webkit-meter-suboptimum-value {
+    background-color: #f1c40f; /* Yellow for sub-optimum */
+    border-radius: 12px;
+}
+meter::-webkit-meter-even-less-good-value {
+    background-color: #e74c3c; /* Red for low */
+    border-radius: 12px;
+}
+
+/* Dialog (Modal) Styling */
+dialog {
+    border: none;
+    border-radius: 15px; /* More rounded */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Stronger, softer shadow */
+    padding: 30px;
+    max-width: 550px;
+    background-color: #ffffff;
+    border: 1px solid #d0dbe2;
+}
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6); /* Darker, more opaque backdrop */
+    backdrop-filter: blur(3px); /* Subtle blur effect */
+}
+.dialog-content h3 {
+    color: #2980b9;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.dialog-content p {
+    margin-bottom: 20px;
+}
+.dialog-content button {
+    background-color: #e74c3c; /* Red for close button */
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.dialog-content button:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #7f8c8d; /* Muted grey for footer text */
+    font-size: 0.95em;
+    margin-top: 30px;
+    border-top: 1px solid #e0e7eb; /* Subtle top border */
+    background-color: #f8fcfc;
+    border-radius: 12px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+footer p {
+    margin: 5px 0;
+}

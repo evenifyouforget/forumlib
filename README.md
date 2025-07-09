@@ -16,7 +16,12 @@ The distinct components of the text processor are:
 
 ## Example usage
 
-TODO
+(on Windows)
+
+```sh
+py .\forumlib\css_layout_tools.py .\samples\css_tools\in.html .\samples\css_tools\out.html
+py .\forumlib\css_layout_tools.py .\samples\css_tools\in_with_link.html .\samples\css_tools\out_with_link.html
+```
 
 ## AI code disclaimer
 
