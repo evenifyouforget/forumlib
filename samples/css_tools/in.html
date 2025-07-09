@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature-Rich HTML Sample</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+        }
+        section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9em;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        form input[type="text"],
+        form input[type="email"],
+        form textarea,
+        form select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        dialog {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 500px;
+        }
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .dialog-content button {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .dialog-content button:hover {
+            background-color: #c82333;
+        }
+    </style>
+    <link rel="stylesheet" href="in.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Our Feature Showcase!</h1>
+            <p>Exploring various HTML5, CSS3, and basic JavaScript features.</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="#tables">Tables</a></li>
+                <li><a href="#forms">Forms</a></li>
+                <li><a href="#interactive">Interactive Elements</a></li>
+                <li><a href="#scripting">Scripting</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="introduction">
+                <h2>Introduction to HTML</h2>
+                <p>This document demonstrates a variety of HTML elements, styled with **CSS**, and enhanced with simple **JavaScript**.</p>
+                <p>You'll find examples of:</p>
+                <ul>
+                    <li>Text formatting: <strong>bold</strong>, <em>italic</em>, <u>underline</u>, <mark>highlight</mark>, <code>code snippets</code>.</li>
+                    <li>Headings and paragraphs.</li>
+                    <li>Ordered and unordered lists.</li>
+                    <li>Links to external resources: <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">Google</a></li>
+                </ul>
+                <p>Here's a blockquote for emphasis:</p>
+                <blockquote>
+                    "The Web as I envisaged it, we have not seen it yet. The future is still so much bigger than the past."
+                    <cite>— Tim Berners-Lee</cite>
+                </blockquote>
+                <a href="#" class="button">Learn More</a>
+            </section>
+            ---
+
+            <section id="media">
+                <h2>Multimedia Elements</h2>
+                <h3>Image Example</h3>
+                <p>A beautiful sunset image:</p>
+                <img src="https://via.placeholder.com/400x200?text=Placeholder+Image" alt="A placeholder image for demonstration" style="max-width: 100%; height: auto; border-radius: 8px;">
+
+                <h3>Audio Example</h3>
+                <p>Listen to some calming audio (if your browser supports it):</p>
+                <audio controls>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <h3>Video Example</h3>
+                <p>Watch a sample video:</p>
+                <video width="320" height="240" controls poster="https://via.placeholder.com/320x240?text=Video+Poster">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </section>
+            ---
+
+            <section id="tables">
+                <h2>Data Tables</h2>
+                <p>Displaying structured data:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>In Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Laptop Pro</td>
+                            <td>Electronics</td>
+                            <td>$1200.00</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Mechanical Keyboard</td>
+                            <td>Peripherals</td>
+                            <td>$95.50</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>External SSD</td>
+                            <td>Storage</td>
+                            <td>$150.00</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Prices are subject to change.</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            ---
+
+            <section id="forms">
+                <h2>Interactive Forms</h2>
+                <p>Collect user input with various form elements:</p>
+                <form action="#" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message here..."></textarea>
+
+                    <label for="country">Country:</label>
+                    <select id="country" name="country">
+                        <option value="">--Please choose an option--</option>
+                        <option value="usa">United States</option>
+                        <option value="can">Canada</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="aus">Australia</option>
+                    </select>
+
+                    <fieldset>
+                        <legend>Preferred Contact Method:</legend>
+                        <input type="radio" id="phone" name="contact" value="phone">
+                        <label for="phone">Phone</label><br>
+                        <input type="radio" id="email_contact" name="contact" value="email">
+                        <label for="email_contact">Email</label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Interests:</legend>
+                        <input type="checkbox" id="html" name="interest" value="html">
+                        <label for="html">HTML</label><br>
+                        <input type="checkbox" id="css" name="interest" value="css">
+                        <label for="css">CSS</label><br>
+                        <input type="checkbox" id="js" name="interest" value="js">
+                        <label for="js">JavaScript</label>
+                    </fieldset>
+
+                    <input type="submit" value="Submit Form">
+                </form>
+            </section>
+            ---
+
+            <section id="interactive">
+                <h2>Interactive Elements</h2>
+                <h3>Details and Summary</h3>
+                <details>
+                    <summary>Click to reveal more information</summary>
+                    <p>This is some hidden content that becomes visible when you click the summary. It's great for FAQs or progressive disclosure.</p>
+                </details>
+
+                <h3>Progress Bar</h3>
+                <label for="file_progress">File Upload Progress:</label>
+                <progress id="file_progress" value="70" max="100">70%</progress>
+
+                <h3>Meter Gauge</h3>
+                <label for="disk_usage">Disk Usage:</label>
+                <meter id="disk_usage" value="0.6" min="0" max="1" low="0.4" high="0.8" optimum="0.5">60%</meter>
+
+                <h3>Dialog Element (Modal)</h3>
+                <button id="showDialogButton">Open Modal Dialog</button>
+                <dialog id="myDialog">
+                    <div class="dialog-content">
+                        <h3>Welcome to the Modal!</h3>
+                        <p>This is a native HTML <code>&lt;dialog&gt;</code> element. It's great for pop-ups, alerts, or confirmations.</p>
+                        <button id="closeDialogButton">Close</button>
+                    </div>
+                </dialog>
+            </section>
+            ---
+
+            <section id="scripting">
+                <h2>Client-Side Scripting (JavaScript)</h2>
+                <p>JavaScript can add dynamic behavior to your page.</p>
+
+                <h3>Simple Click Counter</h3>
+                <p>You have clicked the button <span id="clickCount">0</span> times.</p>
+                <button id="counterButton">Click Me!</button>
+
+                <h3>Date and Time Display</h3>
+                <p>Current Date and Time: <span id="datetime"></span></p>
+
+                <h3>Basic DOM Manipulation</h3>
+                <p>Type something and see it echoed below:</p>
+                <input type="text" id="echoInput" placeholder="Type here...">
+                <p>Echoed Text: <strong id="echoOutput"></strong></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Feature-Rich HTML Sample. All rights reserved.</p>
+            <p>Created for demonstration purposes.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript for interactivity
+
+        // Click Counter
+        const counterButton = document.getElementById('counterButton');
+        const clickCountSpan = document.getElementById('clickCount');
+        let count = 0;
+
+        counterButton.addEventListener('click', () => {
+            count++;
+            clickCountSpan.textContent = count;
+        });
+
+        // Date and Time Display
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('datetime').textContent = now.toLocaleString();
+        }
+        setInterval(updateDateTime, 1000); // Update every second
+        updateDateTime(); // Initial call
+
+        // Echo Input
+        const echoInput = document.getElementById('echoInput');
+        const echoOutput = document.getElementById('echoOutput');
+
+        echoInput.addEventListener('input', (event) => {
+            echoOutput.textContent = event.target.value;
+        });
+
+        // Dialog (Modal) functionality
+        const myDialog = document.getElementById('myDialog');
+        const showDialogButton = document.getElementById('showDialogButton');
+        const closeDialogButton = document.getElementById('closeDialogButton');
+
+        showDialogButton.addEventListener('click', () => {
+            myDialog.showModal(); // showModal() opens the dialog as a modal (blocks interaction outside)
+        });
+
+        closeDialogButton.addEventListener('click', () => {
+            myDialog.close();
+        });
+    </script>
+</body>
+</html>

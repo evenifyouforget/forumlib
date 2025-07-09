@@ -10,6 +10,7 @@ The distinct components of the text processor are:
 * A regex-based macro/replacement system
 * Inlining external CSS files
 * Inlining CSS styles onto elements
+* Removing elements that cannot be seen
 * Generating BBCode from the HTML
 * Generating Markdown from the HTML
 
