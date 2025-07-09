@@ -1,123 +1,115 @@
-import re
-import argparse
-
-class MacroProcessor:
-    def __init__(self):
-        # Stores (compiled_regex_pattern, replacement_string) tuples
-        # The replacement string will have $N converted to \N
-        self.macros = []
-
-    def process_text(self, input_text):
-        """
-        Processes the input text, applies C-like macros (all treated as regex),
-        and returns the result as a string.
-        """
-        output_lines = []
-        lines = input_text.splitlines(keepends=True) # Keep newlines for accurate output
-
-        for line in lines:
-            stripped_line = line.strip()
-            if stripped_line.startswith('#define'):
-                self._handle_define(stripped_line)
-            else:
-                processed_line = self._apply_macros(line)
-                output_lines.append(processed_line)
-        return "".join(output_lines)
-
-    def _handle_define(self, line):
-        """
-        Parses a #define line and stores the macro.
-        Both the 'name' (pattern) and 'value' (replacement) are treated as regex.
-        Expected format: #define <REGEX_PATTERN> <REPLACEMENT_STRING_WITH_GROUPS>
-        """
-        parts = line.split(maxsplit=2)
-        if len(parts) == 3:
-            pattern_str = parts[1]
-            replacement_str = parts[2]
-
-            try:
-                # Compile the pattern immediately to catch errors early
-                compiled_pattern = re.compile(pattern_str)
-                # Standardize backreferences: $1 -> \1 for re.sub
-                # \g<1> is preferred in Python, but \1 is also common and often works
-                # We'll allow both $1 and \1 in the macro definition value.
-                standardized_replacement = replacement_str.replace('$', '\\')
-                self.macros.append((compiled_pattern, standardized_replacement))
-            except re.error as e:
-                print(f"Error: Invalid regex pattern '{pattern_str}' in '#define {line}'. Macro ignored. Error: {e}")
-            except Exception as e:
-                print(f"Unexpected error processing macro '{line}': {e}")
-        else:
-            print(f"Warning: Malformed #define line ignored: {line}")
-
-    def _apply_macros(self, line):
-        """
-        Applies all currently defined macros (regex patterns) to the given line.
-        """
-        current_line = line
-        # Apply macros in the order they were defined
-        for pattern, replacement in self.macros:
-            current_line = pattern.sub(replacement, current_line)
-        return current_line
-
-# --- Main execution with argparse ---
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process text file with C-like macros, all treated as regex.")
-    parser.add_argument("input_filepath", help="Path to the input text file.")
-    parser.add_argument("output_filepath", help="Path to the output text file.")
-
-    args = parser.parse_args()
-
-    # Create a dummy input file if it doesn't exist for demonstration
-    try:
-        with open(args.input_filepath, 'r') as f:
-            pass # Just try to open to see if it exists
-    except FileNotFoundError:
-        print(f"Input file '{args.input_filepath}' not found. Creating a sample one.")
-        input_content = """
-#define \\bfoo\\b bar
-#define \\bhello\\b world
-This is foo and hello.
-#define package<(.+?)> It --> \\1 <-- is now in a box!
-Here is a package<software> and another package<library>.
-#define (\\d{3})-(\\d{3})-(\\d{4}) Phone: (\\1) \\2-\\3
-Call me at 123-456-7890.
-My old number was 987-654-3210.
-#define (.+?)_ID (\\1)_Identifier
-User_ID and Product_ID.
-#define \\bNUMBER\\b Count
-#define Count TOTAL
-NUMBER is high.
 """
-        with open(args.input_filepath, "w") as f:
-            f.write(input_content.strip())
-        print(f"Sample content written to '{args.input_filepath}'.")
+Regex-based text preprocessing phase, independent of most of the rest of the processor
+(which is based on HTML).
+Regex replacement rules are set using a C-like syntax:
+#define foo bar
 
-    # Read input from the specified file
-    try:
-        with open(args.input_filepath, 'r') as infile:
-            input_text_content = infile.read()
-    except FileNotFoundError:
-        print(f"Error: Input file '{args.input_filepath}' not found.")
-        exit(1)
-    except Exception as e:
-        print(f"Error reading input file: {e}")
-        exit(1)
+Supported flags:
+* recursive: repeat all recursive rules until nothing changes
+* end: apply at the very end, rather than by each line
+* linestogether: apply to all lines together, rather than line by line (does nothing without end flag)
+* literal: allow string literal style pattern and replacement, and don't use separator character
+* id:example: assign an ID to the rule, so you can remove it later with #undef example
+"""
+import argparse
+from collections import namedtuple
+from itertools import count
+from math import inf
+from pathlib import Path
+import shlex
+import re
 
-    processor = MacroProcessor()
-    processed_text = processor.process_text(input_text_content)
+RegexRule = namedtuple('RegexRule', ['id', 'pattern', 'replacement', 'flags'])
 
-    # Write output to the specified file
-    try:
-        with open(args.output_filepath, 'w') as outfile:
-            outfile.write(processed_text)
-        print(f"Processing complete. Result written to '{args.output_filepath}'.")
 
-        # Display the content of the output file
-        print(f"\n--- Content of {args.output_filepath} ---")
-        print(processed_text)
-        print("----------------------------")
+def find_apply_regex_macros(raw: str) -> str:
+    result_lines = []
+    rules = []
+    for line in raw.splitlines():
+        original_line = line
+        if line.startswith('#define'):
+            rule_id = None
+            flags = {}
+            is_literal = False
+            line = line[7:]
+            match = re.match(r'\((([\w:]+)(?:,\s*([\w:]+))*)\)', line)
+            if match:
+                # use flags
+                for flag_str in match[1].split(','):
+                    flag_str = flag_str.strip()
+                    if flag_str == 'recursive':
+                        flags['recursive'] = True
+                    elif flag_str == 'end':
+                        flags['end'] = True
+                    elif flag_str == 'linestogether':
+                        flags['linestogether'] = True
+                    elif flag_str == 'literal':
+                        is_literal = True
+                    elif flag_str.startswith('id:'):
+                        rule_id = flag_str[3:]
+                line = line[match.end():]
+            if not line:
+                raise ValueError(f'Incomplete #define line: {original_line}')
+            if is_literal:
+                pattern_str, replacement_str = shlex.split(line[1:])
+            else:
+                sep_char = line[0]
+                _, pattern_str, replacement_str = line.split(sep_char)
+            rules.append(RegexRule(
+                id=rule_id,
+                pattern=pattern_str,
+                replacement=replacement_str,
+                flags=flags
+                ))
+        elif line.startswith('#undef'):
+            rule_id = line[7:].strip()
+            rules = [rule for rule in rules if rule.id != rule_id]
+        else:
+            for round_number in count():
+                changed = False
+                for rule in rules:
+                    max_repeats = 0 if rule.flags.get('end') else inf if rule.flags.get('recursive') else 1
+                    if round_number >= max_repeats:
+                        continue
+                    old_line = line
+                    line = re.sub(rule.pattern, rule.replacement, line)
+                    changed |= old_line != line
+                if not changed:
+                    break
+            result_lines.append(line)
+    result = '\n'.join(result_lines)
+    # apply end rules
+    for round_number in count():
+        changed = False
+        for rule in rules:
+            max_repeats = 0 if not rule.flags.get('end') else inf if rule.flags.get('recursive') else 1
+            if round_number >= max_repeats:
+                continue
+            old_result = result
+            if rule.flags.get('linestogether'):
+                result = re.sub(rule.pattern, rule.replacement, result)
+            else:
+                result = '\n'.join(re.sub(rule.pattern, rule.replacement, line) for line in result.splitlines())
+            changed |= old_result != result
+        if not changed:
+            break
+    return result
 
-    except Exception as e:
-        print(f"Error writing output file: {e}")
-        exit(1)
+def main():
+    parser = argparse.ArgumentParser(
+                    prog='regex_macro.py',
+                    description='Run just the regex macro phase of the processor')
+    parser.add_argument('-i', '--in-file', type=Path, required=True, help='Input file path')
+    parser.add_argument('-o', '--out-file', type=Path, required=True, help='Output file path')
+    args = parser.parse_args()
+    
+    with open(args.in_file) as file:
+        raw = file.read()
+    
+    result = find_apply_regex_macros(raw)
+    
+    with open(args.out_file, 'w') as file:
+        file.write(result)
+
+if __name__ == '__main__':
+    main()

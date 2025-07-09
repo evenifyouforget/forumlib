@@ -10,7 +10,32 @@ FOO BAR BAZ
 #define FOO BAR
 FOO BAR BAZ
 
-#define r(a+) $1$1
-#define g(a+) $1$1
+#define(id:r, recursive) r(a+) \1\1
+#define(id:g, recursive) g(a+) \1\1
 
 graa rgaa
+
+#undef r
+#undef g
+
+graa rgaa
+
+#define#when pigs fly#when false
+
+when pigs fly
+
+#define(literal) "when unicorns exist" "when false"
+
+when unicorns exist
+
+wiiinter
+gap of 1
+
+gap of 1
+gap of 2
+
+
+gap of 2
+
+#define(end, recursive) i(n+) \1\1
+#define(end, recursive, linestogether, literal) "\n\n\n" "[apart by 2]"

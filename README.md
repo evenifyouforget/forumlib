@@ -19,7 +19,7 @@ The distinct components of the text processor are:
 (on Windows)
 
 ```sh
-py .\forumlib\regex_macro.py .\samples\regex_macro\in.txt .\samples\regex_macro\out.txt
+py .\forumlib\regex_macro.py -i .\samples\regex_macro\in.txt -o .\samples\regex_macro\out.txt
 py .\forumlib\css_layout_tools.py .\samples\css_tools\in.html .\samples\css_tools\out.html
 py .\forumlib\css_layout_tools.py .\samples\css_tools\in_with_link.html .\samples\css_tools\out_with_link.html
 py .\forumlib\html_to_bbcode.py .\samples\html_to_bbcode\in.html .\samples\html_to_bbcode\out.bbcode.html

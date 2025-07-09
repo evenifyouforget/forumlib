@@ -4,7 +4,10 @@ baz baz baz
 
 FOO BAR BAZ
 FOO BAZ BAZ
-BAR BAZ BAZ
+BAR BAZ BAZ[apart by 2]aaaaaaaa aaaaaaaa[apart by 2]graa rgaa[apart by 2]when false[apart by 2]when false
 
+wnnnnnnnnter
+gap of 1
 
-aaaaaaaa raaaa
+gap of 1
+gap of 2[apart by 2]gap of 2
