@@ -21,6 +21,8 @@ The distinct components of the text processor are:
 ```sh
 py .\forumlib\css_layout_tools.py .\samples\css_tools\in.html .\samples\css_tools\out.html
 py .\forumlib\css_layout_tools.py .\samples\css_tools\in_with_link.html .\samples\css_tools\out_with_link.html
+py .\forumlib\html_to_bbcode.py .\samples\html_to_bbcode\in.html .\samples\html_to_bbcode\out.bbcode.html
+py .\forumlib\html_to_markdown.py .\samples\html_to_markdown\in.html .\samples\html_to_markdown\out.md
 ```
 
 ## AI code disclaimer
