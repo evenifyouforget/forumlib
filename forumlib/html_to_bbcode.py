@@ -34,8 +34,10 @@ def html_to_bbcode(input_data: Union[str, BeautifulSoup]) -> str:
         comment.extract()
 
     # Process only the contents of <body> if present
+    # and change to <div>
     if soup.body:
-        soup = soup.body.extract()
+        soup = soup.body
+        soup.name = "div"
 
     # Convert all tags by replacing angle brackets with square brackets
     bbcode = soup.encode(formatter="minimal").decode("utf-8").replace('<', '[').replace('>', ']').strip()
