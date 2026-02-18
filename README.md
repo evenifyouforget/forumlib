@@ -108,6 +108,5 @@ Due to strict forum sanitization, not all HTML and CSS features are available. H
 | text-transform                                   | YES            |
 | transform: rotate / scale                        | NO             |
 | visibility: hidden                               | YES            |
-|                                                  |                |
 
 Testing was assisted by Gemini.
