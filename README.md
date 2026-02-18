@@ -49,3 +49,27 @@ Mostly AI:
 * `html_to_bbcode.py`
 * `html_to_markdown.py`
 * All of the HTML examples
+
+# Forum subset of HTML and CSS
+
+Due to strict forum sanitization, not all HTML and CSS features are available. Here is what we know is or isn't supported.
+
+| Feature                         | Support Status                       |
+|---------------------------------|--------------------------------------|
+| border-radius                   | YES                                  |
+| box-shadow                      | YES                                  |
+| nth-child()                     | YES                                  |
+| ::before / ::after              | YES                                  |
+| display: flex                   | NO                                   |
+| display: grid                   | NO                                   |
+| backdrop-filter (Blur)          | NO                                   |
+| CSS Variables (--var)           | NO                                   |
+| position: absolute              | MAYBE (Stripped or forced to static) |
+| External/Internal Class Mapping | MAYBE (Requires forumlib inlining)   |
+| rgba() Transparency             | YES                                  |
+| margin / padding                | YES                                  |
+| table / td behavior             | YES                                  |
+| max-width (images)              | YES                                  |
+| list-style-type                 | YES                                  |
+| font-family                     | NO (Forced to system default)        |
+| !important (Blocks)             | NO (Inline styles win)               |
