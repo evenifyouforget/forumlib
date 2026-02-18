@@ -88,3 +88,5 @@ Due to strict forum sanitization, not all HTML and CSS features are available. H
 | text-decoration-style: wavy     | YES            |
 | text-shadow                     | YES            |
 | transform: rotate / scale       | NO             |
+
+Testing was assisted by Gemini.
