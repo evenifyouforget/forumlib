@@ -68,6 +68,19 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
             tag.insert_after("BLOCKLINE")
             tag.unwrap()
 
+    # Replace <a> tags with just the URL (ignore the link text)
+    for tag in soup.find_all('a', href=True):
+        tag.clear()  # Remove all children and text
+        tag.replace_with(tag['href'])
+            
+    # Destructive filters below using get_text()
+    # Any inside tags will be destroyed
+
+    # Replace heading tags <h1> to <h6> with Markdown syntax
+    for i in range(1, 7):
+        for tag in soup.find_all(f'h{i}'):
+            tag.replace_with(f"{'#' * i} {tag.get_text(strip=True)}\n")
+
     # Replace <ul> and <ol> with Markdown list syntax
     for tag in soup.find_all(['ul', 'ol']):
         list_items = []
@@ -78,11 +91,6 @@ def html_to_discord_markdown(input_data: Union[str, BeautifulSoup]) -> str:
             for index, li in enumerate(tag.find_all('li'), start=1):
                 list_items.append(f"{index}. {li.get_text()}")
         tag.replace_with(f"BLOCKLINE" + "\n".join(list_items) + f"BLOCKLINE")
-
-    # Replace heading tags <h1> to <h6> with Markdown syntax
-    for i in range(1, 7):
-        for tag in soup.find_all(f'h{i}'):
-            tag.replace_with(f"{'#' * i} {tag.get_text(strip=True)}\n")
 
     # Replace <table> with Markdown table syntax
     for table in soup.find_all('table'):
