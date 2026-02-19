@@ -49,3 +49,64 @@ Mostly AI:
 * `html_to_bbcode.py`
 * `html_to_markdown.py`
 * All of the HTML examples
+
+# Forum subset of HTML and CSS
+
+Due to strict forum sanitization, not all HTML and CSS features are available. Here is what we know is or isn't supported.
+
+| Feature                                          | Support Status |
+|--------------------------------------------------|----------------|
+| ::before / ::after                               | NO             |
+| !important (Blocks)                              | NO             |
+| .webp / .gif images                              | YES            |
+| <video> tags                                     | NO             |
+| animations / keyframes                           | NO             |
+| Attribute Selectors ([data-*])                   | YES            |
+| backdrop-filter (Blur)                           | NO             |
+| background-image: url()                          | NO             |
+| Block Rendering (div)                            | YES            |
+| border-radius                                    | MAYBE          |
+| Box Model (padding, border)                      | YES            |
+| box-shadow                                       | YES            |
+| box-sizing: border-box                           | YES            |
+| calc()                                           | YES            |
+| Colors (hex, rgb, named)                         | YES            |
+| CSS Variables (--var)                            | NO             |
+| display: flex                                    | NO             |
+| display: grid                                    | NO             |
+| display: inline-block                            | NO             |
+| display: none                                    | YES            |
+| display: table-cell                              | NO             |
+| External Images (<img>)                          | MAYBE          |
+| External/Internal Class Mapping                  | MAYBE          |
+| float                                            | NO             |
+| float: left/right                                | NO             |
+| font-family (Custom)                             | NO             |
+| font-family (Generic)                            | YES            |
+| font-size / font-weight                          | YES            |
+| hover                                            | NO             |
+| HTML5 <canvas>                                   | NO             |
+| Inheritance (Auto-style)                         | NO             |
+| letter-spacing                                   | YES            |
+| line-height                                      | YES            |
+| list-style-type                                  | YES            |
+| margin (Negative values)                         | YES            |
+| margin / padding                                 | YES            |
+| max-height / overflow: hidden                    | YES            |
+| max-width (images)                               | YES            |
+| negative margin                                  | NO             |
+| nth-child()                                      | YES            |
+| opacity                                          | YES            |
+| pointer-events: none                             | YES            |
+| position: absolute with parent position:relative | YES            |
+| position: fixed                                  | NO             |
+| position:relative                                | YES            |
+| rgba() Transparency                              | YES            |
+| table / td behavior                              | YES            |
+| text-decoration-style: wavy                      | YES            |
+| text-shadow                                      | YES            |
+| text-transform                                   | YES            |
+| transform: rotate / scale                        | NO             |
+| visibility: hidden                               | YES            |
+
+Testing was assisted by Gemini.
